@@ -39,3 +39,15 @@ jobs:
           cd backend/
           npm install
           npx eslint .
+          
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+
+      - name: Run FrontEnd tests
+        run: |
+          cd front-end/
+          npm run test
