@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, { FC, useState } from 'react';
 import ItemList from './components/ItemList';
 import ItemForm from './components/ItemForm';
 import './index.css';
@@ -8,38 +8,38 @@ export type ItemT = {
   url: string;
   weight: number;
   id: number;
-}
+};
 
-export type UserT =  {
+export type UserT = {
   username: string;
   id: number;
-  items: []
-}
+  items: [];
+};
 
 export type Inputs = Pick<ItemT, 'name' | 'url' | 'weight'>;
 
 export type FormStateT = {
   isNew: boolean;
   selectedItem: ItemT | null;
-}
+};
 
 const initialFormState: FormStateT = {
   isNew: true,
   selectedItem: null,
-} ;
+};
 
-const ItemManager:FC = () => {
+const ItemManager: FC = () => {
   const [id, setNewId] = useState(0);
-  const [items, setItems] = useState<ItemT []>([]);
+  const [items, setItems] = useState<ItemT[]>([]);
   const [formState, setFormState] = useState<FormStateT>(initialFormState);
 
   const editItem = (id: number) => {
-    const item = items.find(item => item.id == id);
+    const item = items.find((item) => item.id == id);
 
     if (item) {
       setFormState({
         isNew: false,
-        selectedItem: {...item},
+        selectedItem: { ...item },
       });
     }
   };
@@ -48,17 +48,19 @@ const ItemManager:FC = () => {
     const { isNew, selectedItem } = formState;
     if (isNew) {
       const newItems = [...items];
-      newItems.push({...data, id});
+      newItems.push({ ...data, id });
       setItems(newItems);
-      setNewId(id+1);
+      setNewId(id + 1);
     } else {
       if (selectedItem) {
         const updatedItems = [...items];
-        const indexOfItem = updatedItems.findIndex(item => item.id === selectedItem.id);
-        if ( indexOfItem !== -1) {
+        const indexOfItem = updatedItems.findIndex(
+          (item) => item.id === selectedItem.id
+        );
+        if (indexOfItem !== -1) {
           updatedItems[indexOfItem] = {
             ...selectedItem,
-            ...data,  
+            ...data,
           };
           setItems(updatedItems);
         }
@@ -68,8 +70,8 @@ const ItemManager:FC = () => {
 
   return (
     <>
-      <ItemForm addItem={addItem} itemFormState={formState}/>
-      <ItemList items={items} editItem={editItem}/>
+      <ItemForm addItem={addItem} itemFormState={formState} />
+      <ItemList items={items} editItem={editItem} />
     </>
   );
 };

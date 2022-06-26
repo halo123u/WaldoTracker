@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import ItemList from '../ItemList';
-import{ ItemT } from '../../index';
+import { ItemT } from '../../index';
 
 test('render items list', () => {
-  const items: ItemT [] = [
+  const items: ItemT[] = [
     {
       name: 'test',
       weight: 50,
@@ -28,10 +28,9 @@ test('render items list', () => {
       weight: 50,
       url: 'abc.com',
       id: 4,
-    }
+    },
   ];
 
-  const { container} = render(<ItemList items={items}/>);
+  const { container } = render(<ItemList items={items} />);
   expect(container.getElementsByClassName('item').length).toBe(items.length);
-
 });
