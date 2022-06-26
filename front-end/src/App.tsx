@@ -10,7 +10,10 @@ type UserT =  {
 
 function App() {
   return (
-    <ItemManager/>
+    <>
+      <h1>Waldo Tracker</h1>
+      <ItemManager/>
+    </>
   );
 }
 
